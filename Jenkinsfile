@@ -2,19 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('hariom') {
+        stage('Build') {
             steps {
-                echo 'Hello India'
+                echo 'Building..'
             }
         }
-    stage('3rdstage') {
+        stage('Test') {
             steps {
-                echo 'Hello Punjab'
+                echo 'Testing..'
             }
         }
-    stage('4rt stage') {
+        stage('Deploy') {
             steps {
-                echo 'Hello Bharat'
+                echo 'Deploying....'
             }
         }
     }
