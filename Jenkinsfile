@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    // agent any
+    parameters {
+        choice(name: 'AGENT_TYPE', choices: ['windows', 'linux', 'any'], description: 'Agent select karo')
+    }
+        
     // triggers {
     //     none()
     // }
