@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('terrform-version') {
             steps {
-                echo 'Building..'
+                sh 'terraform version'
             }
         }
         stage('Test') {
