@@ -7,8 +7,7 @@ pipeline {
                sh '''
                  terraform version
                  az version
-                '''
-                
+                '''  
             }
         }
         stage('terraform-init') {
