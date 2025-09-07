@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('terrform-version') {
             steps {
+                '''
                 sh 'terraform version'
+                sh 'az version'
+                '''
+                
             }
         }
         stage('terraform-init') {
