@@ -1,7 +1,14 @@
 pipeline {
     agent any
-
+    environment {
+    MY_CRED = credentials('serviceprincipal')
+  }
     stages {
+      stage('build') {
+       steps {
+          sh 'az login --service-principal -u $MY_CRED_CLIENT_ID -p $MY_CRED_CLIENT_SECRET -t $MY_CRED_TENANT_ID'
+      }
+    }
         stage('terrform-version') {
             steps {
                sh '''
@@ -10,6 +17,7 @@ pipeline {
                 '''  
             }
         }
+        
         stage('terraform-init') {
             steps {
               sh 'terraform init'
