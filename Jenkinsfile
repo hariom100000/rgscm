@@ -7,9 +7,9 @@ pipeline {
                 sh 'terraform version'
             }
         }
-        stage('Test') {
+        stage('terraform-init') {
             steps {
-                echo 'Testing..'
+              sh 'terraform init'
             }
         }
         stage('Deploy') {
