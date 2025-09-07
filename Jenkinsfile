@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        none()
+    }
     environment {
     MY_CRED = credentials('serviceprincipal')
   }
