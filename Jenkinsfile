@@ -4,7 +4,8 @@ pipeline {
     MY_CRED = credentials('serviceprincipal')
   }
     options {
-  ansiColor('xterm')
+       ansiColor('xterm')
+       timestamps()
 }
  parameters { 
      booleanParam(name: 'build1', defaultValue: false, description: 'this is my build') 
