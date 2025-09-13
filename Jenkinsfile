@@ -6,6 +6,9 @@ pipeline {
     options {
   ansiColor('xterm')
 }
+ parameters { 
+     booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: 'this is my build') 
+ }
     stages {
       stage('azure-login') {
        steps {
