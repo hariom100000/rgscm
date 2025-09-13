@@ -1,12 +1,5 @@
 pipeline {
-    // agent any
-    parameters {
-        choice(name: 'AGENT_TYPE', choices: ['windows', 'linux', 'any'], description: 'Agent select karo')
-    }
-        
-    // triggers {
-    //     none()
-    // }
+    agent any
     environment {
     MY_CRED = credentials('serviceprincipal')
   }
