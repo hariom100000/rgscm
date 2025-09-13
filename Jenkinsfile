@@ -8,7 +8,7 @@ pipeline {
 }
  parameters { 
      booleanParam(name: 'build1', defaultValue: false, description: 'this is my build') 
-     choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select environment tpo deploy resources ?') 
+     choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select environment to deploy resources ?') 
  }
     stages {
       stage('azure-login') {
