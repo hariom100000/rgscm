@@ -7,6 +7,7 @@ pipeline {
        ansiColor('xterm')
        timestamps()
        timeout(time: 1, unit: 'HOURS')
+        retry(2)
 }
  parameters { 
      booleanParam(name: 'build1', defaultValue: false, description: 'this is my build') 
