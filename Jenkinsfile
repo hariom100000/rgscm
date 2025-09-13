@@ -3,6 +3,9 @@ pipeline {
     environment {
     MY_CRED = credentials('serviceprincipal')
   }
+    options {
+  ansiColor('xterm')
+}
     stages {
       stage('azure-login') {
        steps {
