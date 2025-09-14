@@ -32,16 +32,14 @@ pipeline {
                 '''  
             }
         }
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "har,bob"
-                // parameters {
-                //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                // }
-            }
-        
+       stage('approval') {
+           input{
+               message "Kya aap is deploy ko approve karte hai?"
+           }
+           steps{
+               echo "User ne approval de diya."
+           }
+       }
         stage('terraform-init') {
             steps {
               sh 'terraform init'
