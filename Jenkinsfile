@@ -49,6 +49,17 @@ pipeline {
                 echo "Approved by: ${env.APPROVED_BY}"
             }
         }
+        stage('Check Plan Param') {
+            steps {
+                script {
+                    if (params.plan) {
+                        echo "✔️ Plan parameter is true. Terraform Plan chalega."
+                    } else {
+                        echo "❌ Plan parameter is false. Skipping Terraform Plan."
+                    }
+                }
+            }
+        }
         stage('terraform-init') {
             steps {
               sh 'terraform init'
