@@ -3,7 +3,6 @@ pipeline {
     environment {
     MY_CRED = credentials('serviceprincipal')
   }
-    triggers{ cron('H/2 * * * *') }
     
     options {
        ansiColor('xterm')
