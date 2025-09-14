@@ -35,6 +35,7 @@ pipeline {
        stage('approval') {
            input{
                message "Kya aap is deploy ko approve karte hai?"
+               submitter "har"
            }
            steps{
                echo "User ne approval de diya."
