@@ -45,33 +45,7 @@ pipeline {
                     ok: 'Proceed'
         }
       }
-       stage('approval') {
-            when {
-                allOf {
-                    branch 'InfraDeploy-Plan'
-                    environment name: 'envname', value: 'dev'
-                }
-            }
-            input {
-                message "Kya aap is deploy ko approve karte hai?"
-                submitter "har"
-                submitterParameter "APPROVED_BY"
-            }
-            steps {
-                echo "Approved by: ${env.APPROVED_BY}"
-            }
-        }
-        stage('Check Plan Param') {
-            steps {
-                script {
-                    if (params.plan) {
-                        echo "✔️ Plan parameter is true. Terraform Plan chalega."
-                    } else {
-                        echo "❌ Plan parameter is false. Skipping Terraform Plan."
-                    }
-                }
-            }
-        }
+
         stage('terraform-init') {
             steps {
               sh 'terraform init'
