@@ -36,9 +36,10 @@ pipeline {
            input{
                message "Kya aap is deploy ko approve karte hai?"
                submitter "har"
+               submitterParameter "APPROVED_BY"
            }
            steps{
-               echo "User ne approval de diya."
+               echo "Approved by :${env.APPROVED_BY}"
            }
        }
         stage('terraform-init') {
