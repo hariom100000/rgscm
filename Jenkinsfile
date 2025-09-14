@@ -34,6 +34,7 @@ pipeline {
         }
         when {
             branch 'InfraDeploy-Plan'
+            environment name: 'envname',value:'dev'
         }
        stage('approval') {
            input{
