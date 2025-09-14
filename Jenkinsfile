@@ -36,7 +36,8 @@ pipeline {
         steps{
             script {
                 //determine the selection
-                def action = params.plan ? 'plan' : 'none'
+                def action = params.plan ? 'plan' : (params.apply ? 'apply' : (params.Destroy ? 'Destroy' : 'None'))
+                
                 echo "project details:\n"
                 echo "\tEnvironment \t: ${params.environment}"
                 echo "\n\t Action \t : ${action}"
