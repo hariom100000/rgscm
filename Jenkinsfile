@@ -32,6 +32,9 @@ pipeline {
                 '''  
             }
         }
+        when {
+            branch 'InfraDeploy-Plan'
+        }
        stage('approval') {
            input{
                message "Kya aap is deploy ko approve karte hai?"
