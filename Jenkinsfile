@@ -32,7 +32,18 @@ pipeline {
                 '''  
             }
         }
-  
+      stage('project review'){
+        steps{
+            script {
+                //determine the selection
+                def action = params.plan ? 'plan'
+                echo "project details: \n"
+                echo "\tEnvironment \t: ${params.environment}"
+                echo "\n\t Action \t : ${action}"
+                input message: 'Please verify and confirm the project details \nProceed or Abort',
+                    ok: 'Proceed'
+        }
+      }
        stage('approval') {
             when {
                 allOf {
