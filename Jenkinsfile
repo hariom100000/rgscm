@@ -34,21 +34,21 @@ pipeline {
         }
   
        stage('approval') {
-         when {
-            allof{
-            branch 'InfraDeploy-Plan'
-            environment name: 'envname',value:'dev'
+            when {
+                allOf {
+                    branch 'InfraDeploy-Plan'
+                    environment name: 'envname', value: 'dev'
+                }
+            }
+            input {
+                message "Kya aap is deploy ko approve karte hai?"
+                submitter "har"
+                submitterParameter "APPROVED_BY"
+            }
+            steps {
+                echo "Approved by: ${env.APPROVED_BY}"
+            }
         }
-    }
-           input{
-               message "Kya aap is deploy ko approve karte hai?"
-               submitter "har"
-               submitterParameter "APPROVED_BY"
-           }
-           steps{
-               echo "Approved by :${env.APPROVED_BY}"
-           }
-       }
         stage('terraform-init') {
             steps {
               sh 'terraform init'
