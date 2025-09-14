@@ -33,9 +33,11 @@ pipeline {
             }
         }
         when {
+            allof{
             branch 'InfraDeploy-Plan'
             environment name: 'envname',value:'dev'
         }
+    }
        stage('approval') {
            input{
                message "Kya aap is deploy ko approve karte hai?"
