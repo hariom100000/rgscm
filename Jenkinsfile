@@ -45,7 +45,7 @@ pipeline {
                     ok: 'Proceed'
         }
       }
-
+      }
         stage('terraform-init') {
             steps {
               sh 'terraform init'
