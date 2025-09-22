@@ -78,7 +78,7 @@ pipeline {
                     echo "Running Terraform plan before apply..."
                     sh 'terraform plan'
                 //Step 1: General Confirmation
-                input message: 'Please verify the terraform plan  and confirm to proceed in '${params.environment}' environment.",
+                input message: "Please verify the terraform plan  and confirm to proceed in '${params.environment}' environment.",
                     ok: 'Proceed'
                 //Step 2: Show allowed approvers
                 def allowedApprovers = ['har']
