@@ -50,6 +50,13 @@ pipeline {
       }
       }
         stage('terraform-init') {
+            when {
+                anyOf {
+                    expression {return params.plan}
+                    expression {return params.apply}
+                    expression {return params.Destroy}
+                }
+            }
             steps {
               sh 'terraform init'
             }
@@ -59,10 +66,10 @@ pipeline {
               sh 'terraform plan'
             }
         }
-        stage('terraform-apply') {
-            steps {
-              sh 'terraform apply -auto-approve'
-            }
-        }
+        // stage('terraform-apply') {
+        //     steps {
+        //       sh 'terraform apply -auto-approve'
+        //     }
+        // }
     }
 }
