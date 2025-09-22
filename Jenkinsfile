@@ -103,7 +103,7 @@ Only the following Jenkins users can approve this action:
             when {
                 expression {return params.apply}
             }
-            Steps {
+            steps {
                 sh 'terraform apply -auto-approve'
             }
         }
@@ -111,7 +111,7 @@ Only the following Jenkins users can approve this action:
             when {
                 expression { return params.Destroy }
             }
-            Steps {
+            steps {
                 sh 'terraform destroy -auto-approve'
             }
         }
