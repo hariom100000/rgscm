@@ -69,10 +69,43 @@ pipeline {
               sh 'terraform plan'
             }
         }
-        // stage('terraform-apply') {
-        //     steps {
-        //       sh 'terraform apply -auto-approve'
-        //     }
-        // }
+        stage('terraform plan Before Apply') {
+            when {
+                expression {return params.apply}
+            }
+            steps {
+                script {
+                    echo "Running Terraform plan before apply..."
+                    sh 'terraform plan'
+                //Step 1: General Confirmation
+                input message: 'Please verify the terraform plan  and confirm to proceed in '${params.environment}' environment.",
+                    ok: 'Proceed'
+                //Step 2: Show allowed approvers
+                def allowedApprovers = ['har']
+                echo """
+===========================================================
+Terraform Apply Approval Required
+Only the following Jenkins users can approve this action:
+   ${allowedApprovers.join('\n   ')}
+============================================================
+"""
+                //Step 3: Rstrict approval input
+                def approvar = input(
+                    message: "Approval required to run 'terraform apply' in '${params.environment}' environment.",
+                    ok: "Approve and Apply",
+                    submitter: allowedApprovers.join(',')
+                    )
+                //echo "Terraform Apply approved by: ${approvar}"
+            }
+        }
     }
-}
+        stage('Terraform Apply') {
+            when {
+                expression {return params.apply}
+            }
+            Steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
+        
+
