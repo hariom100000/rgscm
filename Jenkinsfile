@@ -61,7 +61,10 @@ pipeline {
               sh 'terraform init'
             }
         }
-        stage('terraform-plan') {
+        stage('terraform plan only') {
+            when {
+                expression {return params.plan}
+            }
             steps {
               sh 'terraform plan'
             }
