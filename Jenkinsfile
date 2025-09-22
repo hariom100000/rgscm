@@ -115,3 +115,5 @@ Only the following Jenkins users can approve this action:
                 sh 'terraform destroy -auto-approve'
             }
         }
+    }
+} 
