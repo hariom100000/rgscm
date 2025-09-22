@@ -108,4 +108,14 @@ Only the following Jenkins users can approve this action:
             }
         }
         
-
+     
+        stage('Terraform Destroy') {
+            when {
+                expression {return params.Destroy}
+            }
+            Steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+        
+     
