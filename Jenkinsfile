@@ -11,7 +11,6 @@ pipeline {
         retry(2)
 }
  parameters { 
-     // booleanParam(name: 'build1', defaultValue: false, description: 'this is my build') 
      choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select environment to deploy resources ?') 
      booleanParam(name: 'plan', defaultValue: false, description: 'Perform Terraform Plan ?')
      booleanParam(name: 'apply', defaultValue: false, description: 'Perform Terraform Apply ?')
@@ -37,11 +36,15 @@ pipeline {
             script {
                 //determine the selection
                 def action = params.plan ? 'plan' : (params.apply ? 'apply' : (params.Destroy ? 'Destroy' : 'None'))
-                
-                echo "project details:\n"
-                echo "\tEnvironment \t: ${params.environment}"
-                echo "\n\t Action \t : ${action}"
-                input message: 'Please verify and confirm the project details \nProceed or Abort',
+                echo """
+  ------------------------------------------------------------------
+  Project Deployment Review
+  ------------------------------------------------------------------
+  Environment: ${param.environment}
+  Action     : ${action}
+  ------------------------------------------------------------------
+  """
+                input message: 'Please verify and confirm the project details above. \nClick "Proceed" to countinue or Abort the build.',
                     ok: 'Proceed'
         }
       }
