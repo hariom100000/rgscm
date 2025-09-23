@@ -13,11 +13,11 @@ data "azurerm_key_vault" "example-key" {
 }
 
 data "azurerm_key_vault_secret" "vm-passwd" {
-  name         = "vmpasswd"
+  name         = "vmpassw"
   key_vault_id = data.azurerm_key_vault.example-key.id
 }
 
 data "azurerm_key_vault_secret" "vm-username" {
-  name         = "vmusername"
+  name         = "vmuser"
   key_vault_id = data.azurerm_key_vault.example-key.id
 }
