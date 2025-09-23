@@ -8,7 +8,7 @@ output "network_interface_id" {
 }
 
 data "azurerm_key_vault" "example-key" {
-  name                = "hariomkey3"
+  name                = "hariomkey33"
   resource_group_name = "RG-backend"
 }
 
