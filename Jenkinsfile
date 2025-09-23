@@ -8,7 +8,6 @@ pipeline {
        ansiColor('xterm')
        timestamps()
        timeout(time: 1, unit: 'HOURS')
-        retry(2)
 }
  parameters { 
      choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select environment to deploy resources ?') 
