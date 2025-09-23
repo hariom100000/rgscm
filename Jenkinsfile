@@ -59,6 +59,7 @@ pipeline {
             }
             steps {
              sh '''
+             cd Environment/prod
              terraform init
                '''
             }
@@ -69,7 +70,8 @@ pipeline {
             }
             steps {
                 sh '''
-              terraform plan
+                cd Environment/prod
+                terraform plan
               '''
             }
         }
@@ -81,6 +83,7 @@ pipeline {
                 script {
                     echo "Running Terraform plan before apply..."
                     sh '''
+                    cd Environment/prod
                     terraform plan
                     '''
                 //Step 1: General Confirmation
@@ -111,6 +114,7 @@ Only the following Jenkins users can approve this action:
             }
             steps {
                 sh '''
+                cd Environment/prod
                 terraform apply -auto-approve
                 '''
             }
@@ -121,6 +125,7 @@ Only the following Jenkins users can approve this action:
             }
             steps {
                 sh '''
+                cd Environment/prod
                 terraform destroy -auto-approve
                 '''
             }
