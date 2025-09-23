@@ -58,8 +58,10 @@ pipeline {
                 }
             }
             steps {
-              cd Environment/prod
-              sh 'terraform init'
+             sh '''
+             cd Environment/prod
+             terraform init
+               '''
             }
         }
         stage('terraform plan only') {
@@ -67,8 +69,10 @@ pipeline {
                 expression {return params.plan}
             }
             steps {
+                sh '''
               cd Environment/prod
-              sh 'terraform plan'
+              terraform plan
+              '''
             }
         }
         stage('terraform plan Before Apply') {
@@ -78,8 +82,10 @@ pipeline {
             steps {
                 script {
                     echo "Running Terraform plan before apply..."
+                    sh '''
                     cd Environment/prod
-                    sh 'terraform plan'
+                    terraform plan
+                    '''
                 //Step 1: General Confirmation
                 input message: "Please verify the terraform plan  and confirm to proceed in '${params.environment}' environment.",
                     ok: 'Proceed'
@@ -107,8 +113,10 @@ Only the following Jenkins users can approve this action:
                 expression {return params.apply}
             }
             steps {
+                sh '''
                 cd Environment/prod
-                sh 'terraform apply -auto-approve'
+                terraform apply -auto-approve
+                '''
             }
         }
         stage('Terraform Destroy') {
@@ -116,8 +124,10 @@ Only the following Jenkins users can approve this action:
                 expression { return params.Destroy }
             }
             steps {
+                sh '''
                 cd Environment/prod
-                sh 'terraform destroy -auto-approve'
+                terraform destroy -auto-approve
+                '''
             }
         }
     }
